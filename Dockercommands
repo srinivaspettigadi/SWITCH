@@ -110,3 +110,15 @@ MAINTAINER "Srinivas"
 RUN apt-get update
 RUN apt-get install -y
 CMD /bin/echo "Hello from container"
+
+PORT FORWARDING
+=================
+dcoker run -itd nginx
+
+docker inspect containerid
+
+P ==> port forwarding
+
+docker run -itd -P nginx
+
+
