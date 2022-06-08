@@ -101,3 +101,12 @@ CMD ["nginx", "-g", "daemon off;"]
    docker run -it myimage:dockerfile
    docker history myimage:dockerfile
    docker run -itd myimage:dockerfile
+   
+===============================
+Installing VIM package in docker container by taking ubuntu
+
+FROM ubuntu
+MAINTAINER "Srinivas"
+RUN apt-get update
+RUN apt-get install -y
+CMD /bin/echo "Hello from container"
