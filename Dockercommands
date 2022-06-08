@@ -1,0 +1,103 @@
+DOCKER COMMANDS
+===================
+systemctl start docker
+ systemctl status docker
+ service docker.io status
+ systemctl status docker
+ docker images
+ docker run hello-world
+docker run --name myimage hello-world
+ docker ps -a
+ docker images
+ history | grep docker
+ docker pull tomcat
+ docker images
+ docker tag tomcat srinivas493/firstrepo:1
+docker push srinivas493/firstrepo:1
+ docker logout
+ docker login
+ docker push srinivas493/firstrepo:1
+ docker run -itd tomcat  ====> iterative detached terminal
+ docker ps
+ docker ps -a
+ docker run --name mytomcat -itd tomcat
+docker stop mytomcat
+docker start mytomcat
+
+=======================================================================
+root@ip-172-31-19-77:~# docker images
+REPOSITORY              TAG       IMAGE ID       CREATED        SIZE
+tomcat                  latest    c795915cb678   5 days ago     680MB
+srinivas493/firstrepo   1         c795915cb678   5 days ago     680MB
+srinivas493/firstrepo   2         c795915cb678   5 days ago     680MB
+srinivas493/firstrepo   latest    c795915cb678   5 days ago     680MB
+hello-world             latest    feb5d9fea6a5   8 months ago   13.3kB
+
+TO BE NOTED
+	Every Image must a unique tag , they cant be duplicated.
+	All the images and components/objects will be stored in /var/lib/docker
+	Run ===> will always create the new container. You run only for images not for containers
+	Start ===> It will start only the container and only stopped container will be started.
+Container Lifecycle 
+	Created
+	Running
+	Paused
+	Stopped
+	Deleted
+
+
+
+
+
+
+
+LIFECYCLE OF CONTAINERS
+ 
+
+RUNNING CONTAINER CANNOT BE REMOVED
+First stop and then remove
+root@ip-172-31-19-77:~# docker rm mytomcat
+Error response from daemon: You cannot remove a running container ae75bd22219788c3b5ace607844e9687659e400539bab458f1d23be3157f9057. Stop the container before attempting removal or force remove
+Create Your Own Image
+1.	Creating from the existing image
+2.	Creating using docker file
+
+
+
+Creating from existing Image
+Docker ps
+Docker commit containerid firstrepo:11  this will create a new image
+
+root@ip-172-31-19-77:~# docker commit a50d259c9688 firstrepo:11
+sha256:75a70854019763f29ed7447bbe4911db4a9c832543199c362d7a496923a5d5d4
+root@ip-172-31-19-77:~# docker ps
+CONTAINER ID   IMAGE                     COMMAND   CREATED          STATUS          PORTS     NAMES
+90831e104f05   srinivas493/firstrepo:5   "bash"    5 minutes ago    Up 4 minutes              condescending_gauss
+root@ip-172-31-19-77:~# docker images
+REPOSITORY              TAG          IMAGE ID       CREATED          SIZE
+firstrepo               11           75a708540197   7 seconds ago    77.8MB
+
+Deleting Images
+	docker images
+	docker images -aq
+	docker rmi -f $(docker images -aq)
+	docker images
+
+
+
+
+
+
+Creating Using DockerFile
+FROM ubuntu
+MAINTAINER "Srinivas"
+RUN apt-get update
+RUN apt-get install nginx -y
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+  docker build -t myimage:dockerfile .
+    docker build -t myimage:dockerfile .
+   docker run -it myimage:dockerfile
+   docker history myimage:dockerfile
+   docker run -itd myimage:dockerfile
