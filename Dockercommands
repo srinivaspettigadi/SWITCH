@@ -134,5 +134,13 @@ Volumes are managed by the docker daemon  ==> this is more recommeneded
 
 Bind mounts are also one of the volume types, it is just a file system on the server
 
+REMOVE
+========
+docker volume rm vol1
+
+
+
+
+
 
 
