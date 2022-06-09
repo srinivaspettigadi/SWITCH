@@ -114,12 +114,25 @@ CMD /bin/echo "Hello from container"
 PORT FORWARDING
 =================
 dcoker run -itd nginx
-
 docker inspect containerid
-
 P ==> port forwarding
-
 docker run -itd -P nginx
-
-
 docker run -itd -p 9999:80 nginx
+===================================================================
+VOLUMES
+=========
+=========
+
+docker volume ls
+docker volume create vol1
+docker volume inspect vol1 
+docker run -itd --name containerwithvolume -v vol1:/mylogs ubuntu
+
+docker run -itd --name containerwithvolume -v vol3:/mylogs ubuntu  ====> here if you dont have the volume vol3 it will be created.
+
+Volumes are managed by the docker daemon  ==> this is more recommeneded
+
+Bind mounts are also one of the volume types, it is just a file system on the server
+
+
+
