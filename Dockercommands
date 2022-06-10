@@ -97,7 +97,7 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
   docker build -t myimage:dockerfile .
-    docker build -t myimage:dockerfile .
+  docker build -t myimage:dockerfile .
    docker run -it myimage:dockerfile
    docker history myimage:dockerfile
    docker run -itd myimage:dockerfile
@@ -138,7 +138,62 @@ REMOVE
 ========
 docker volume rm vol1
 
+====================================================================================================================================================
 
+
+docker swarm init 
+docker swarm join --token SWMTKN-1-1v3ui3oth5vgn3qz65vvsqvr2bj9syngymo0m7ho8mghx0sizn-c6967ffazyyk2w4u38jr2cas2 172.31.19.77:2377
+
+docker node ls
+
+docker service create --name myservice -p 8000:80 nginx
+
+
+docker service create --name myservice -p 8000:80 nginx
+docker service ls
+docker ps
+docker service ls
+
+Scaling up the docker service 
+
+
+docker service scale myservice=3
+docker service ls
+
+
+DRAINING a node
+====================
+docker node update --availability drain <IP> =======> take IP from docker node ls command
+
+
+docker node update --availability active <IP>  ========> make active state
+
+then check docker service ps myservice
+
+=====================================================
+
+docker swarm join-token manager
+docker swarm join-token worker
+
+docker service logs <servicename>
+========================================
+
+COMPOSE
+============
+
+The following only builds the images, does not start the containers:
+
+docker-compose build
+The following builds the images if the images do not exist and starts the containers:
+
+docker-compose up
+If you add the --build option, it is forced to build the images even when not needed:
+
+docker-compose up --build
+The following skips the image build process:
+
+docker-compose up --no-build
+========================================================================
 
 
 
